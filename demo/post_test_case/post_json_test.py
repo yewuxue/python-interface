@@ -1,25 +1,23 @@
-#！/usr/bin/python3
-# -*- coding:UTF-8-*-
-# author : YangShuang
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#Author:YangShuang
 import requests
 import json
 
 host="http://httpbin.org/"
 path="post"
 url=''.join([host,path])
-
+params={"show_env":1}
 data={
-    "info":{"code":1,"sex":"男"},
+    "info":{"a":"嘻嘻","b":"haha"},
     "code":1,
-    "name":"嘻嘻"
+    "id":9000
 }
 
 
 '''给服务器发送请求'''
-#r=requests.post(url,data=data)   这种方式无法传输内容
-'''两种方式
-r=requests.post(url,data=json.dumps(data))
-r=requests.post(url,json=data)
-'''
-print(r.headers)
-print(r.text)
+#r=requests.post(url,params=params,data=json.dumps(data))
+r1=requests.post(url,params=params,json=data)
+res=r1.json()
+#print(r1.headers)
+print(res["json"])
